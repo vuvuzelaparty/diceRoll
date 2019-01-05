@@ -25,5 +25,5 @@ for i in "${input[@]}"; do
 		((res+=$x))
 		arr+=$x' '
 	done
-	echo $i":" $res "-" ${arr[@]}
+	echo $i "-" $res":" ${arr[@]}
 done
