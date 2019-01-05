@@ -2,7 +2,7 @@
 
 usage() {
 	echo "Usage:"
-	echo "	./diceRoll <NdM>*"
+	echo "	./diceRoll <NdM>+, where N > 0 and M > 1"
 	echo "	Enter one or more valid dice rolls."
 	echo "Example:"
 	echo "	./diceRoll 4d6 3d20"
