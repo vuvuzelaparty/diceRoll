@@ -13,8 +13,7 @@ if [ "$#" -lt "1" ]; then
 	exit
 fi
 
-input=($@)
-for i in "${input[@]}"; do
+for i in "${@}"; do
 	[[ "$i" =~ ^[0-9]+d[0-9]+$ ]] || { echo "Not a valid dice roll entry" && usage && exit; }
 	N=$(echo $i | cut -dd -f1)
 	M=$(echo $i | cut -dd -f2)
