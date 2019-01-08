@@ -30,7 +30,7 @@ while read -r i; do
 	elif [[ "${c[@]}" =~ "$i" ]]; then
 		echo 'Thank you for playing!' && exit
 	elif [ "$i" = "rr" ]; then
-		[ ! -z "$last" ] && ./diceRoll $last || echo "Nothing to reroll"
+		[ -n "$last" ] && ./diceRoll $last || echo "Nothing to reroll"
 	else
 		./diceRoll $i
 	fi
