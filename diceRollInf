@@ -11,9 +11,16 @@ usage() {
 }
 
 usage
+c=('quit' 'exit' 'done' 'bye' 'q' 'e' 'd' 'b')
 while read -r i; do
-	if [ "$i" == 'quit' ] || [ "$i" == 'exit' ] || [ "$i" == 'bye' ]; then
+	if [ "$i" = "" ]; then
+		usage
+	elif [[ "${c[@]}" =~ "$i" ]]; then
 		echo 'Thank you for playing!' && exit
+	elif [[ "$i" =~ ^([0-9]+d[0-9]+ *)+$ ]]; then
+		./diceRoll $i
+	else
+		echo "Not a valid dice roll entry" && usage
 	fi
-	./diceRoll $i
+	echo
 done

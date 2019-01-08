@@ -8,13 +8,10 @@ usage() {
 	echo "	./diceRoll 4d6 3d20"
 }
 
-if [ "$#" -lt "1" ]; then
-	usage
-	exit
-fi
+if [ "$#" -lt "1" ]; then usage && exit; fi
 
 for i in "${@}"; do
-	[[ "$i" =~ ^[0-9]+d[0-9]+$ ]] && N=$(echo $i | cut -dd -f1) && M=$(echo $i | cut -dd -f2) && (($N > 0)) && (($M > 1)) || { echo "Not a valid dice roll entry" && usage && exit; }
+	[[ "$i" =~ ^[0-9]+d[0-9]+$ ]] && N=$((10#$(echo $i | cut -dd -f1))) && M=$((10#$(echo $i | cut -dd -f2))) && (($N > 0)) && (($M > 1)) || { echo "Not a valid dice roll entry" && usage && exit; }
 	res=0
 	arr=()
 	for j in $(seq 1 $N); do
