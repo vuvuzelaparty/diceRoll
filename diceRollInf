@@ -11,7 +11,7 @@ usage() {
 	echo "Example:"
 	echo "	4d6 3d20"
 	echo "rr to reroll"
-	echo "Type any of the following to exit:" ${c[*]}
+	echo "Enter any of the following to exit:" ${c[*]}
 }
 
 usage
