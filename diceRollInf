@@ -10,6 +10,7 @@ usage() {
 	echo "	Enter one or more valid dice rolls."
 	echo "Example:"
 	echo "	4d6 3d20"
+	echo "rr to reroll"
 	echo "Type any of the following to exit:" ${c[*]}
 }
 
@@ -28,8 +29,11 @@ while read -r i; do
 		usage
 	elif [[ "${c[@]}" =~ "$i" ]]; then
 		echo 'Thank you for playing!' && exit
+	elif [ "$i" = "rr" ]; then
+		[ ! -z "$last" ] && ./diceRoll $last || echo "Nothing to reroll"
 	else
 		./diceRoll $i
 	fi
 	echo
+	last=$i
 done

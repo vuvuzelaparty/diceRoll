@@ -19,7 +19,7 @@ for i in "${@}"; do
 			((res+=$x))
 			arr+=$x' '
 		done
-	echo $i "-" $res":" ${arr[@]}
+		echo $i "-" $res":" ${arr[@]}
 	else
 		echo "$i -- Not a valid dice roll entry"
 	fi
