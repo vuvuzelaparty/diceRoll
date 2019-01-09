@@ -17,7 +17,7 @@ usage() {
 usage
 echo
 
-if [ "$#" -gt "1" ]; then
+if [ "$#" -gt "0" ]; then
 	for i in "${@}"; do
 		./diceRoll $i
 	done
