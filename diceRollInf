@@ -18,6 +18,7 @@ usage
 echo
 
 if [ "$#" -gt "0" ]; then
+	last=${@}
 	for i in "${@}"; do
 		./diceRoll $i
 	done
@@ -33,7 +34,7 @@ while read -r i; do
 		[ -n "$last" ] && ./diceRoll $last || echo "Nothing to reroll"
 	else
 		./diceRoll $i
+		last=$i
 	fi
 	echo
-	last=$i
 done
