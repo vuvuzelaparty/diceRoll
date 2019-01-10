@@ -10,6 +10,10 @@ usage() {
 
 if [ "$#" -lt "1" ]; then usage && exit; fi
 
+res_col=$(tput setaf 1; tput bold)
+ind_col=$(tput setaf 2)
+def_col=$(tput sgr0)
+
 for i in "${@}"; do
 	if [[ "$i" =~ ^[0-9]+d[0-9]+$ ]] && N=$((10#$(echo $i | cut -dd -f1))) && M=$((10#$(echo $i | cut -dd -f2))) && (($N > 0)) && (($M > 1)); then
 		res=0
@@ -19,7 +23,7 @@ for i in "${@}"; do
 			((res+=$x))
 			arr+=$x' '
 		done
-		echo $i "-" $res":" ${arr[@]}
+		echo $i "-" ${res_col}$res${def_col}":" ${ind_col}${arr[@]}${def_col}
 	else
 		echo "$i -- Not a valid dice roll entry"
 	fi
