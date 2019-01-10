@@ -7,9 +7,9 @@ c=('quit' 'exit' 'done' 'bye' 'q' 'e' 'd' 'b')
 usage() {
 	echo "Usage:"
 	echo "	<NdM>+, where N > 0 and M > 1"
-	echo "	Enter one or more valid dice rolls."
+	echo "	N is the number of dice, and M is the number of sides on each dice"
 	echo "Example:"
-	echo "	4d6 3d20"
+	echo "	4d6 3d20 (rolls 4 6-sided dice and 3 20-sided dice)"
 	echo "rr to reroll"
 	echo "Enter any of the following to exit:" ${c[*]}
 }
