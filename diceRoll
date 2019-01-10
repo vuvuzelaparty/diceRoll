@@ -23,7 +23,7 @@ for i in "${@}"; do
 			((res+=$x))
 			arr+=$x' '
 		done
-		echo $i "-" ${res_col}$res${def_col}":" ${ind_col}${arr[@]}${def_col}
+		echo $i "-" $res_col$res$def_col":" $ind_col${arr[@]}$def_col
 	else
 		echo "$i -- Not a valid dice roll entry"
 	fi
