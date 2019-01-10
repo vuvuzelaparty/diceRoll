@@ -8,13 +8,15 @@ usage() {
 	echo "	./diceRoll 4d6 3d20 (rolls 4 6-sided dice and 3 20-sided dice)"
 }
 
-if [ "$#" -lt "1" ]; then usage && exit; fi
+[ "$#" -lt "1" ] && usage && exit
 
 res_col=$(tput setaf 1; tput bold)
 ind_col=$(tput setaf 2)
 def_col=$(tput sgr0)
 
-for i in "${@}"; do
+[ -f "$1" ] && rolls=("$(cat $1 | tr '\n' ' ')") || rolls="${@}"
+
+for i in $rolls; do
 	if [[ "$i" =~ ^[0-9]+d[0-9]+$ ]] && N=$((10#$(echo $i | cut -dd -f1))) && M=$((10#$(echo $i | cut -dd -f2))) && (($N > 0)) && (($M > 1)); then
 		res=0
 		arr=()
