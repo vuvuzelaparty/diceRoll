@@ -14,7 +14,15 @@ res_col=$(tput setaf 1; tput bold)
 ind_col=$(tput setaf 2)
 def_col=$(tput sgr0)
 
-[ -f "$1" ] && rolls=("$(cat $1 | tr '\n' ' ')") || rolls="${@}"
+rolls="${@}"
+
+for i in $rolls; do
+	if [ -f "$i" ]; then
+		addarr=("$(cat $i | tr '\n' ' ')")
+		rolls+=" "${addarr}
+		rolls=("${rolls[@]/$i}")
+	fi
+done
 
 for i in $rolls; do
 	if [[ "$i" =~ ^[0-9]+d[0-9]+$ ]] && N=$((10#$(echo $i | cut -dd -f1))) && M=$((10#$(echo $i | cut -dd -f2))) && (($N > 0)) && (($M > 1)); then
