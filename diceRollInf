@@ -3,6 +3,7 @@
 # infinite version of diceRoll!
 
 c=('quit' 'exit' 'done' 'bye' 'q' 'e' 'd' 'b')
+h=('help' 'h' '-h' '?')
 
 usage() {
 	echo "Usage:"
@@ -11,22 +12,17 @@ usage() {
 	echo "Example:"
 	echo "	4d6 3d20 (rolls 4 6-sided dice and 3 20-sided dice)"
 	echo "rr to reroll"
-	echo "Enter any of the following to exit:" ${c[*]}
+	echo "Enter any of the following to exit:" ${c[@]}
+	echo "Enter any of the following for help:" ${h[@]}
 }
 
 usage
 echo
 
-if [ "$#" -gt "0" ]; then
-	last=${@}
-	for i in "${@}"; do
-		./diceRoll $i
-	done
-	echo
-fi
+[ "$#" -gt "0" ] && last=$@ && ./diceRoll $last && echo
 
 while read i; do
-	if [ "$i" = "" ]; then
+	if [[ "${h[@]}" =~ "$i" ]] || [ "$i" = "" ]; then
 		usage
 	elif [[ "${c[@]}" =~ "$i" ]]; then
 		echo 'Thank you for playing!' && exit

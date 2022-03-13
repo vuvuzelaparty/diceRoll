@@ -9,7 +9,7 @@ usage() {
 }
 
 # print usage message if no arguments or if one of them is "-h"
-if [ $# -lt 1 ] || [[ $@ =~ -h ]]; then
+if [ "$#" -lt "1" ] || [[ "$@" =~ "-h" ]]; then
 	usage && exit
 fi
 
@@ -17,20 +17,20 @@ res_col=$(tput setaf 1; tput bold) # color for final result dice roll, red
 ind_col=$(tput setaf 2) # color for individual dice rolls, green
 def_col=$(tput sgr0) # resets color to default
 
-rolls=($@)
+rolls="$@"
 
-for i in ${rolls[@]}; do
+for i in $rolls; do
 	# {x%y*} - delete chars after and including y in string x
 	# {x#*y} - delete chars before and including y in string x
-	if [[ $i =~ ^[0-9]+d[0-9]+$ ]] && N=${i%d*} && M=${i#*d} && [ $N -gt 0 ] && [ $M -gt 1 ]; then
+	if [[ $i =~ ^[0-9]+d[0-9]+$ ]] && N="${i%d*}" && M="${i#*d}" && [ "$N" -gt "0" ] && [ "$M" -gt "1" ]; then
 		res=0
-		arr=()
+		arr=''
 		for j in $(seq 1 $N); do
 			x=$[RANDOM%$M+1] # roll the dice
 			((res+=$x)) # add roll to result
-			arr+=$x' ' # add roll to array of rolls to print at the end
+			arr+="$x " # add roll to string of rolls to print at the end
 		done
-		echo "$i - $ind_col${arr[@]}$def_col: $res_col$res$def_col"
+		echo "$i - $ind_col$arr$def_col: $res_col$res$def_col"
 	else
 		echo "$i -- Not a valid dice roll entry"
 	fi
